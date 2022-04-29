@@ -52,6 +52,27 @@ for(c in names(results)[1:4])
 
 ```
 
+```{r}
+
+p1 <- ggplot(days_since,aes(x=days_since_2011,y=results$days_since_2011)) + geom_line() + geom_rug(aes(y=NULL)) + labs(x='Days since 2011',y='Prediction') + ylim(0,6050)
+
+p2 <- ggplot(days_since,aes(x=temp,y=results$temp)) + geom_line() +
+  geom_rug(aes(y=NULL)) + labs(x='Temperature',y='')+ ylim(0,6050)
+
+p3 <- ggplot(days_since,aes(x=hum,y=results$hum)) + geom_line() +
+  geom_rug(aes(y=NULL)) + labs(x='Humidity',y='')+ ylim(0,6050)
+
+p4 <- ggplot(days_since,aes(x=windspeed,y=results$windspeed)) + 
+  geom_line() + geom_rug(aes(y=NULL)) + labs(x='Wind Speed',y='')+ ylim(0,6050)
+
+# install.packages("patchwork", dependencies = TRUE)
+library(patchwork)
+
+p1 + p2 + p3 + p4 + plot_layout(ncol=4)
+
+```
+La cantidad de bicis alquiladas se predice que ha ido generalmente en aumento desde 2011, pero, además, a mayor temperatura también más gente alquila la bici, encontrando un máximo alrededor de 20-25ºC, esta parece ser la temperatura óptima para salir a dar una vuelta, esta variable además actúa de forma inversa a la humedad, donde a mayor humedad menos interés hay en alquilar una bici (normalmente hay poca humedad en días de sol). Por último la velocidad del viento también tiene algo de influencia aunque menos que las demás, donde generalmente a mayor velocidad menos ganas hay de coger una bici, como cabría esperar.
+
 ## EXERCISE:
 
 Generate a 2D Partial Dependency Plot with humidity and temperature to predict the number of bikes rented depending of those parameters.
@@ -87,24 +108,11 @@ for(i in 1:nrow(th)){
 ```
 
 ```{r}
-
-p1 <- ggplot(days_since,aes(x=days_since_2011,y=results$days_since_2011)) + geom_line() + geom_rug(aes(y=NULL)) + labs(x='Days since 2011',y='Prediction') + ylim(0,6050)
-
-p2 <- ggplot(days_since,aes(x=temp,y=results$temp)) + geom_line() +
-  geom_rug(aes(y=NULL)) + labs(x='Temperature',y='')+ ylim(0,6050)
-
-p3 <- ggplot(days_since,aes(x=hum,y=results$hum)) + geom_line() +
-  geom_rug(aes(y=NULL)) + labs(x='Humidity',y='')+ ylim(0,6050)
-
-p4 <- ggplot(days_since,aes(x=windspeed,y=results$windspeed)) + 
-  geom_line() + geom_rug(aes(y=NULL)) + labs(x='Wind Speed',y='')+ ylim(0,6050)
-
-# install.packages("patchwork", dependencies = TRUE)
-library(patchwork)
-
-p1 + p2 + p3 + p4 + plot_layout(ncol=4)
-
+p <- ggplot(th, aes(x = temp, y = hum, fill = p)) + geom_tile(width = 10, height = 15) + geom_rug(alpha = 0.01) +
+  labs(fill = "Number of bikes")
+p
 ```
+
 
 ## EXERCISE:
 
@@ -139,6 +147,10 @@ for(c in names(results)[1:4])
     results[[c]][i] <- sum(sal) / nr
   }
 }
+
+```
+
+```{r}
 
 ```
 
