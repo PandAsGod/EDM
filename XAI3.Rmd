@@ -152,5 +152,21 @@ for(c in names(results)[1:4])
 
 ```{r}
 
+p1 <- ggplot(sampled,aes(x=bedrooms,y=results$bedrooms)) + geom_line() + geom_rug(aes(y=NULL)) + labs(x='Bedrooms',y='Prediction')
+
+p2 <- ggplot(sampled,aes(x=bathrooms,y=results$bathrooms)) + geom_line() +
+  geom_rug(aes(y=NULL)) + labs(x='Bathrooms',y='')
+
+p3 <- ggplot(sampled,aes(x=sqft_living,y=results$sqft_living)) + geom_line() +
+  geom_rug(aes(y=NULL)) + labs(x='Sqft Living',y='')
+
+p4 <- ggplot(sampled,aes(x=floors,y=results$floors)) + 
+  geom_line() + geom_rug(aes(y=NULL)) + labs(x='Floors',y='')
+
+# install.packages("patchwork", dependencies = TRUE)
+library(patchwork)
+
+p1 + p2 + p3 + p4 + plot_layout(ncol=4)
+
 ```
 
