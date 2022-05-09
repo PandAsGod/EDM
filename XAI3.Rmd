@@ -113,6 +113,15 @@ p <- ggplot(th, aes(x = temp, y = hum, fill = p)) + geom_tile(width = 10, height
 p
 ```
 
+El gráfico de este ejercicio es un mapa de color que nos indica la cantidad de bicis alquiladas dependiendo de la temperatura y la humedad.
+Podemos extraer conclusiones relativas a la hora de predecir la cantidad de alquileres: 
+
+- Si mantenemos la temperatura como constante, podemos observar que baja humedad no afectaría a la cantidad de bicis alquiladas, sin embargo, cuando esta humedad aumenta, sobrepasando 70%, vemos como se vería afectada negativamente la cantidad de bicis alquiladas, disminuyendo alrededor de 500 bicis.
+
+- Por el contrario, si mantenemos constante la humedad, el incremento de temperatura afectaría positivamente al alquiler de bicis. Este comportamiento  deja de ser así cuando se superan los 25º aprox. en el que el alquiler de bicis se ve reducido.
+
+- Finalmente, si comprobamos las relaciones que hay entre ambos atributos, se puede afirmar que el momento en el que mayor alquiler de bicis hay es cuando la humedad es menor a 75% y la temperatura entre 18º y 25º, superando más de 5000 bicis alquiladas (Como hemos mencionado antes, la temperatura tiene un límite óptimo, a partir de ahí se empeoran los alquileres). También es conveniente indicar que cuando la humedad es muy alta >90% y la temperatura es muy baja <5º, la cantidad de bicis alquiladas en mínima, ni siquiera supera las 3000 bicis.
+
 
 ## EXERCISE:
 
@@ -169,4 +178,12 @@ library(patchwork)
 p1 + p2 + p3 + p4 + plot_layout(ncol=4)
 
 ```
+Por último, vamos a explicar los gráficos obtenidos al realizar las predicciones de los precios de las casas dependiendo de la cantidad de habitaciones, baños, tamaño de la casa y las plantas:
 
+- Habitaciones: Conforme aumenta el número de habitaciones, disminuye el precio de la viviendo hasta que se superan las 6 hab. en el precio se incrementa considerablemente. El rango de precio dependiendo de las habitaciones oscila entre 590.000 y 525.000.
+
+- Baños: Los baños son una de las cosas que siempre hacen aumentar el precio de la vivienda, haciendo que incluso se doble el precio de esta. Empezando desde 500k hasta alcanzar los 1.1M
+
+- Area: La tendencia del precio cuando aumenta este valor es muy similar a lo que ocurre con los baños, que aumenta exponencialmente su valor. En este caso se cuadruplica su valor empezando con un valor mínimo de 400k y alcanzando los 1.6M.
+
+- Plantas: La cantidad de plantas en una casa no afecta al precio de la vivienda si no supera las 2 plantas. Sin embargo, cuando se alcanzan 3 plantas el precio aumenta en gran medida, costando 100k más que con 1 o 2 plantas.
